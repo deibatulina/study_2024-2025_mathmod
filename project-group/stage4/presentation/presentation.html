@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="ru-RU">
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Команда №4 Абакумова О.М., Астраханцева А.А., Ганина Т.С., Ибатулина Д.Э.">
+  <title>Решеточные газы, решеточное уравнение Больцмана</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link href="data:text/plain;charset=UTF-8;charset=utf-8,Not%20found%3A%20%2Freveal%2Ejs%404%2E6%2E1%2F%2Fdist%2Freset%2Ecss" rel="stylesheet">
+  <link href="data:text/plain;charset=UTF-8;charset=utf-8,Not%20found%3A%20%2Freveal%2Ejs%404%2E6%2E1%2F%2Fdist%2Freveal%2Ecss" rel="stylesheet">
+  <style>
+.reveal .sourceCode { 
+overflow: visible;
+}
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+</style>
+  <link href="data:text/plain;charset=UTF-8;charset=utf-8,Not%20found%3A%20%2Freveal%2Ejs%404%2E6%2E1%2F%2Fdist%2Ftheme%2Fbeige%2Ecss" rel="stylesheet" id="theme">
+  
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide">
+  <h1 class="title">Решеточные газы, решеточное уравнение Больцмана</h1>
+  <p class="subtitle">Групповой проект. Этап 4</p>
+  <p class="author">Команда №4 Абакумова О.М., Астраханцева А.А., Ганина
+Т.С., Ибатулина Д.Э.</p>
+  <p class="institute">Российский университет дружбы народов, Москва,
+Россия</p>
+  <p class="date">21 мая 2025</p>
+</section>
+
+<section id="вводная-часть" class="slide level1">
+<h1>Вводная часть</h1>
+<h2 id="состав-исследовательской-команды">Состав исследовательской
+команды</h2>
+<p>Студенты группы НФИбд-01/02-22:</p>
+<ul>
+<li>Абакумова Олеся Максимовна</li>
+<li>Астраханцева Анастасия Александровна</li>
+<li>Ганина Таисия Сергеевна</li>
+<li>Ибатулина Дарья Эдуардовна</li>
+</ul>
+<h2 id="постановка-проблемы">Постановка проблемы</h2>
+<p>Моделирование газовых потоков и жидкостей традиционными методами,
+такими как уравнения Навье-Стокса, требует значительных вычислительных
+ресурсов.</p>
+<p>Методы LGA и LBE предлагают альтернативу, упрощая вычисления при
+сохранении физической достоверности.</p>
+<h2 id="актуальность">Актуальность</h2>
+<ol type="1">
+<li>Исследования сложных многокомпонентных течений.</li>
+<li>Течений с фазовыми переходами и химическими реакциями.</li>
+<li>Создания высокопроизводительных параллельных алгоритмов.</li>
+</ol>
+<h2 id="задачи-этапа">Задачи этапа</h2>
+<ol type="1">
+<li>Анализировать результаты тестирования модели</li>
+<li>Обсудить в команде итоги работы</li>
+<li>Оценить качество реализации проекта, в частности, написанного
+кода</li>
+<li>Подготовить материалы для защиты проекта</li>
+<li>Провести самооценку деятельности</li>
+</ol>
+</section>
+<section id="основная-часть" class="slide level1">
+<h1>Основная часть</h1>
+<h2 id="итоги-первого-этапа-проекта">Итоги первого этапа проекта</h2>
+<ol type="1">
+<li><p>Изучили основные принципы решеточных моделей газа (LGA) и
+решеточного уравнения Больцмана (LBE).</p></li>
+<li><p>Ознакомились с базовыми моделями: HPP, FHP-I, FHP-III, а также с
+расширенной моделью с 9 направлениями скорости.</p></li>
+<li><p>Проанализировали физические свойства этих моделей: симметрию,
+анизотропию, возможность сохранения импульса и энергии, введение
+температуры.</p></li>
+<li><p>Изучили область применимости этих моделей — от моделирования
+жидкостей до фазовых переходов и химических взаимодействий.</p></li>
+</ol>
+<h2 id="итоги-второго-этапа-проекта">Итоги второго этапа проекта</h2>
+<ol type="1">
+<li><p>Мы подробно проанализировали алгоритмы распространения и
+столкновения частиц в решеточных моделях.</p></li>
+<li><p>Были рассмотрены способы кодирования состояний узлов с помощью
+битовых операций, что обеспечило компактность и быстродействие
+реализации.</p></li>
+<li><p>Сравнили особенности моделей HPP, FHP-I, FHP-III и LBM, включая
+их алгоритмическую сложность, вычислительные затраты, физическую
+реалистичность.</p></li>
+<li><p>Сделали обоснованный выбор в пользу модели HPP, как стартовой
+точки: она проще в реализации, но при этом позволяет продемонстрировать
+ключевые принципы решеточного моделирования.</p></li>
+</ol>
+<h2 id="итоги-третьего-этапа-проекта">Итоги третьего этапа проекта</h2>
+<ol type="1">
+<li><p>Мы реализовали модель HPP на языке Julia.</p></li>
+<li><p>Было реализовано три тестовых сценария, проверяющих:</p></li>
+</ol>
+<ul>
+<li><p>корректность перемещения одной частицы;</p></li>
+<li><p>корректность лобового столкновения;</p></li>
+<li><p>поведение при угловом столкновении четырёх частиц.</p></li>
+<li><p>Созданы анимации (GIF), наглядно демонстрирующие ход
+моделирования, а также сохранение физических величин во
+времени.</p></li>
+</ul>
+<h2 id="распределение-ролей-и-организация-взаимодействия">Распределение
+ролей и организация взаимодействия</h2>
+<ul>
+<li>Теоретический анализ - все участники, с последующим обсуждением на
+общем собрании.</li>
+<li>Программная реализация - основная ответственность легла на
+участников с наиболее сильными навыками программирования на Julia.</li>
+<li>Тестирование и визуализация - совместная работа.</li>
+<li>Оформление отчёта и презентаций - по частям, с последующим
+коллективным редактированием.</li>
+</ul>
+<h2 id="коллективное-обсуждение-решений">Коллективное обсуждение
+решений</h2>
+<ul>
+<li>Как лучше реализовать периодические граничные условия?</li>
+<li>Как структурировать код для удобства тестирования?</li>
+<li>Какие тесты наиболее полно проверяют корректность модели?</li>
+<li>Как визуализировать результаты, чтобы они были максимально
+наглядными?</li>
+</ul>
+<h2 id="программная-реализация">Программная реализация</h2>
+<ul>
+<li>Параметры модели</li>
+<li>Создание сетки</li>
+<li>Добавление частиц</li>
+<li>Периодические граничные условия</li>
+<li>Обработка столкновений</li>
+<li>Распространение частиц</li>
+<li>Подсчёт числа частиц и импульса</li>
+<li>Визуализация</li>
+<li>Тесты</li>
+</ul>
+<h2 id="объяснение-выбора-архитектуры">Объяснение выбора
+архитектуры</h2>
+<ul>
+<li>Периодические граничные условия выбраны для проверки корректности
+распространения частиц</li>
+<li>Разделение на функции повышает читаемость и удобство
+тестирования</li>
+<li>Визуализация позволяет не только проверить корректность работы кода,
+но и наглядно продемонстрировать физический смысл происходящих
+процессов</li>
+</ul>
+<h2 id="корректность-работы-модели">Корректность работы модели</h2>
+<ul>
+<li>Тест 1 (одна частица): частица движется по прямой, корректно
+“переходит” через границы, возвращаясь с противоположной стороны. Число
+частиц и импульс сохраняются.</li>
+<li>Тест 2 (лобовое столкновение): две частицы встречаются, после
+столкновения меняют направления строго по правилам HPP. Сохраняются
+число частиц и импульс.</li>
+<li>Тест 3 (столкновение под прямым углом): четыре частицы встречаются в
+одной точке, после столкновения разлетаются в новые направления. Все
+законы сохранения выполняются.</li>
+</ul>
+<h2 id="достижения-и-ограничения">Достижения и ограничения</h2>
+<ul>
+<li>Достижения: реализована полностью работоспособная модель HPP, все
+физические законы выполняются, тесты проходят успешно, визуализация
+информативна.</li>
+<li>Ограничения: модель HPP обладает известными недостатками
+(анизотропия, нефизичное поведение на макроуровне). Для более точного
+моделирования реальных жидкостей и газов требуются более сложные модели
+(например, FHP).</li>
+</ul>
+<h2 id="структурированность-читаемость-и-модульность">Структурированность,
+читаемость и модульность</h2>
+<p>Код организован в виде отдельных функций, каждая из которых отвечает
+за свою задачу:</p>
+<ul>
+<li>создание сетки (<code>create_grid</code>),</li>
+<li>добавление частицы (<code>add_particle!</code>),</li>
+<li>применение граничных условий
+(<code>apply_periodic_boundaries!</code>),</li>
+<li>обработка столкновений (<code>collide!</code>),</li>
+<li>распространение частиц (<code>propagate!</code>),</li>
+<li>подсчёт числа частиц (<code>count_particles</code>),</li>
+<li>вычисление импульса (<code>calculate_momentum</code>),</li>
+<li>визуализация (<code>plot_grid</code>),</li>
+<li>запуск тестов (<code>run_all_tests</code>).</li>
+</ul>
+<h2 id="корректность-реализации-физических-принципов">Корректность
+реализации физических принципов</h2>
+<ol type="1">
+<li><p>Периодические граничные условия</p></li>
+<li><p>Столкновения частиц</p></li>
+<li><p>Сохранение числа частиц и импульса</p></li>
+</ol>
+<h2 id="гибкость-и-расширяемость">Гибкость и расширяемость</h2>
+<ul>
+<li>Размер сетки, направления движения, цвета для визуализации задаются
+в начале через константы, что позволяет легко менять параметры
+модели.</li>
+<li>Код легко масштабируется: можно увеличивать размеры сетки, добавлять
+новые сценарии тестирования, менять правила столкновений.</li>
+</ul>
+<h2 id="визуализация-и-наглядность">Визуализация и наглядность</h2>
+<ul>
+<li>Для каждого теста создаются анимации (GIF), где визуально
+отображается движение и столкновения частиц, а также аннотируются число
+частиц и импульс.</li>
+<li>Использование разных цветов для направлений делает анимации
+понятными даже без глубокого погружения в код.</li>
+<li>Визуализация помогает не только анализировать корректность, но и
+презентовать результаты на защите.</li>
+</ul>
+<h2 id="тестируемость-и-автоматизация-проверки">Тестируемость и
+автоматизация проверки</h2>
+<p>В коде реализованы отдельные функции для трёх ключевых тестов:</p>
+<ul>
+<li>одна частица (проверка распространения и граничных условий)</li>
+<li>две частицы (лобовое столкновение)</li>
+<li>четыре частицы (столкновение под прямым углом)</li>
+</ul>
+<p>Функция <code>run_all_tests</code> позволяет запускать все тесты
+последовательно, что удобно для автоматической проверки и
+демонстрации.</p>
+<h2 id="обработка-ошибок-и-валидация-данных">Обработка ошибок и
+валидация данных</h2>
+<ul>
+<li>Используются <code>@assert</code> для проверки корректности
+координат частиц и направлений при добавлении в сетку.</li>
+<li>Это предотвращает появление некорректных состояний и облегчает
+отладку.</li>
+</ul>
+<h2 id="документированность">Документированность</h2>
+<ul>
+<li>В отчёте приведены подробные комментарии к каждой функции,
+объясняющие смысл и работу каждого блока кода.</li>
+<li>Описаны все используемые параметры и логика работы алгоритма.</li>
+</ul>
+<h2 id="ограничения-и-честная-самооценка">Ограничения и честная
+самооценка</h2>
+<ul>
+<li>В отчёте честно указаны ограничения самой модели HPP (анизотропия,
+нефизичность на макроуровне), а не только кода.</li>
+<li>Это говорит о критическом отношении к результату и понимании границ
+применимости</li>
+</ul>
+<h2 id="обсуждение-трудностей-и-путей-их-решения">Обсуждение трудностей
+и путей их решения</h2>
+<ul>
+<li>Сложности с граничными условиями</li>
+<li>Проверка корректности столкновений</li>
+<li>Временные ограничения</li>
+</ul>
+<h2 id="индивидуальный-и-командный-вклад">Индивидуальный и командный
+вклад</h2>
+<ul>
+<li>Каждый участник внёс вклад в теорию, программирование, тестирование
+и оформление отчёта.</li>
+<li>Совместная работа позволила каждому освоить новые навыки: кто-то
+углубился в программирование на <code>Julia</code>, кто-то - в физику
+решеточных моделей, кто-то - в визуализацию данных.</li>
+<li>В процессе обсуждений и совместного поиска решений повысился уровень
+взаимопонимания и доверия в команде.</li>
+</ul>
+<h2 id="самооценка">Самооценка</h2>
+<ul>
+<li>Цели этапа полностью достигнуты: реализована модель, проведено
+тестирование, оформлен подробный отчёт.</li>
+<li>Качество реализации: код структурирован, документирован, легко
+расширяется для новых задач.</li>
+<li>Командная работа: эффективное распределение задач, взаимопомощь,
+своевременное решение проблем.</li>
+<li>Личные достижения: каждый участник повысил свою квалификацию в
+области научного моделирования и командной работы.</li>
+</ul>
+<h2 id="выводы-и-рекомендации">Выводы и рекомендации</h2>
+<ul>
+<li>Освоить современные методы моделирования физических процессов.</li>
+<li>Получить опыт командной работы, научиться планировать и
+реализовывать сложные проекты.</li>
+<li>Научиться анализировать и визуализировать результаты
+моделирования.</li>
+<li>Критически оценивать свои достижения и ограничения.</li>
+</ul>
+<h2 id="возможное-продолжение-работы">Возможное продолжение работы</h2>
+<ul>
+<li><p>Модернизация модели: переход от HPP к FHP-III, чтобы устранить
+анизотропию и повысить физическую достоверность.</p></li>
+<li><p>Добавление термодинамики: переход к модели с 9 направлениями и
+введение температуры.</p></li>
+<li><p>Моделирование фазовых переходов: добавление сил взаимодействия
+между частицами.</p></li>
+<li><p>Переход к LBE: для описания вязких течений и сложных граничных
+условий.</p></li>
+<li><p>Параллелизация: реализация на GPU с помощью CUDA.jl для повышения
+производительности.</p></li>
+</ul>
+</section>
+<section id="заключительная-часть" class="slide level1">
+<h1>Заключительная часть</h1>
+<h2 id="выводы">Выводы</h2>
+<p>Проект был реализован на высоком уровне благодаря слаженной работе
+команды, глубокому анализу теории и тщательному тестированию программной
+реализации. Каждый участник внёс значимый вклад, а коллективное
+обсуждение позволило не только добиться отличного результата, но и
+получить ценный опыт научного сотрудничества.</p>
+</section>
+<section id="список-литературы" class="slide level1">
+<h1>Список литературы</h1>
+<ol type="1">
+<li><p>Медведев Д.А. и др. Моделирование физических процессов и явлений
+на ПК: Учеб. пособие. // Новосибирск: Новосиб. гос. ун-т, 2010. 101
+с.</p></li>
+<li><p><a href="https://doi.org/10.20948/prepr-2021-99">Чащин Г.С. Метод
+решёточных уравнений Больцмана</a> // <a href="https://library.keldysh.ru/preprint.asp?id=2021-99">Препринты.
+2021. № 99. 31 с.</a>.</p></li>
+<li><p>Hardy J., Pomeau Y., de Pazzis O. Time evolution of a
+two-dimensional classical lattice system // Physical Review Letters.
+1973. Vol. 31, № 5. P. 276–279. DOI: 10.1103/PhysRevLett.31.276</p></li>
+<li><p>Succi, Sauro. The Lattice Boltzmann Equation for Fluid Dynamics
+and Beyond. Oxford University Press, 2001.</p></li>
+</ol>
+</section>
+    </div>
+  </div>
+
+  <script src="data:text/plain;charset=UTF-8;charset=utf-8,Not%20found%3A%20%2Freveal%2Ejs%404%2E6%2E1%2F%2Fdist%2Freveal%2Ejs"></script>
+
+  <!-- reveal.js plugins -->
+  <script src="data:text/plain;charset=UTF-8;charset=utf-8,Not%20found%3A%20%2Freveal%2Ejs%404%2E6%2E1%2F%2Fplugin%2Fnotes%2Fnotes%2Ejs"></script>
+  <script src="data:text/plain;charset=UTF-8;charset=utf-8,Not%20found%3A%20%2Freveal%2Ejs%404%2E6%2E1%2F%2Fplugin%2Fsearch%2Fsearch%2Ejs"></script>
+  <script src="data:text/plain;charset=UTF-8;charset=utf-8,Not%20found%3A%20%2Freveal%2Ejs%404%2E6%2E1%2F%2Fplugin%2Fzoom%2Fzoom%2Ejs"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: true,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'bottom-right',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: false,
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: false,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: true,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'default',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: true,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // reveal.js plugins
+        plugins: [
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    </body>
+</html>
